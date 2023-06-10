@@ -1,2 +1,2 @@
-# docker-template
-Template for future Docker repos
+# docker-vault
+Docker image for a Hashicorp Vault prod deployment
