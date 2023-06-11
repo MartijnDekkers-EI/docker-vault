@@ -14,8 +14,8 @@ LABEL org.label-schema.name="Vault" \
 # /vault/file is made available to use as a location with the file storage backend, if desired;
 RUN mkdir -p /vault/logs && \
     mkdir -p /vault/file && \
-    mkdir -p /vault/config && \
-    chown -R ${NAME}:${NAME} /vault
+    mkdir -p /etc/vault.d && \
+    # chown -R ${NAME}:${NAME} /vault
 
 # Expose the logs directory as a volume since there's potentially long-running
 # state in there
@@ -30,9 +30,7 @@ EXPOSE 8200/tcp
 EXPOSE 8201/tcp
 
 COPY containerpilot.json5 /etc/containerpilot.json5
-ENV CONTAINERPILOT=/etc/containerpilot.json5
-
-ADD init.sh /init.sh
+COPY init.sh /init.sh
 
 ENTRYPOINT ["/bin/dumb-init", "--"]
 CMD ["/bin/bash", "-c", "exec /init.sh"]

@@ -1,0 +1,21 @@
+{
+  consul: "localhost:8500", // connect to a container-local agent
+  logging: {
+    level: "{{- .LOGLEVEL }}",
+    format: "text",
+    output: "stdout"
+  },
+  control: {
+    socket: "/var/run/containerpilot.socket"
+  },
+  jobs: [
+    {
+      name: "consul-agent", // run a local dev agent as we don't have a consul cluster yet
+      exec: [
+        "consul", "agent",
+        "-dev"
+      ],
+      restarts: "unlimited"
+    }
+  ]
+}
