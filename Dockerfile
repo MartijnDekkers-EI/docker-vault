@@ -12,9 +12,9 @@ LABEL org.label-schema.name="Vault" \
 
 # /vault/logs is made available to use as a location to store audit logs, if desired;
 # /vault/file is made available to use as a location with the file storage backend, if desired;
-RUN mkdir -p /vault/logs && \
-    mkdir -p /vault/file && \
-    mkdir -p /etc/vault.d && \
+RUN mkdir -p /vault/logs \
+    && mkdir -p /vault/file \
+    && mkdir -p /etc/vault.d
     # chown -R ${NAME}:${NAME} /vault
 
 # Expose the logs directory as a volume since there's potentially long-running
